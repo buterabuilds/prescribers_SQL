@@ -6,7 +6,6 @@ FROM prescriber
 	INNER JOIN prescription USING (npi)
 GROUP BY npi
 ORDER BY SUM(total_claim_count) DESC;
--- Answer: 1881634483
 
 -- 1b. What are the name, specialty, and total claim count of the prescriber with the highest claim volume?
 SELECT
@@ -18,7 +17,6 @@ FROM prescriber
 	INNER JOIN prescription USING (npi)
 GROUP BY npi, nppes_provider_first_name, nppes_provider_last_org_name, specialty_description
 ORDER BY SUM(total_claim_count) DESC;
--- Answer: Bruce Pendley (Family Practice), 99707
 
 -- 2a. Which specialty had the highest total number of claims across all drugs?
 SELECT specialty_description, SUM(total_claim_count)
@@ -26,7 +24,6 @@ FROM prescriber
 	INNER JOIN prescription USING (npi)
 GROUP BY specialty_description
 ORDER BY SUM(total_claim_count) DESC;
--- Answer: Family Practice
 
 -- 2b. Which specialty had the highest total number of opioid claims?
 SELECT specialty_description, SUM(total_claim_count)
@@ -36,7 +33,6 @@ FROM prescriber
 WHERE opioid_drug_flag = 'Y'
 GROUP BY specialty_description
 ORDER BY SUM(total_claim_count) DESC;
--- Answer: Nurse Practioner
 
 -- 2c. Which specialties have no associated prescriptions?
 SELECT specialty_description
@@ -61,15 +57,14 @@ FROM drug
 	INNER JOIN prescription USING (drug_name)
 GROUP BY generic_name
 ORDER BY SUM(total_drug_cost) DESC;
--- Answer: INSULIN GLARGINE, HUM.REC.ANLOG
 
 -- 3b. Which generic drug had the highest total cost per day supplied?
 SELECT generic_name, ROUND(SUM(total_drug_cost) / SUM(total_day_supply), 2) AS cost_per_day
 FROM drug
 	INNER JOIN prescription USING (drug_name)
+	
 GROUP BY generic_name
 ORDER BY cost_per_day DESC;
--- Answer: C1 ESTERASE INHIBITOR
 
 -- 4a. Which drugs were classified as opioids, antibiotics, or neither?
 SELECT drug_name,
@@ -88,14 +83,12 @@ FROM drug
 	INNER JOIN prescription USING (drug_name)
 GROUP BY drugtype
 ORDER BY total_spent DESC;
--- Answer: Opioid
 
 -- 5a. How many Core-Based Statistical Areas (CBSAs) are in Tennessee?
 SELECT COUNT(DISTINCT cbsa)
 FROM cbsa
 	INNER JOIN fips_county USING (fipscounty)
 WHERE state = 'TN';
--- Answer: 10
 
 -- 5b. Which CBSAs had the largest and smallest combined populations?
 SELECT cbsaname, SUM(population) as comb_pop
@@ -103,7 +96,6 @@ FROM cbsa
 	INNER JOIN population USING (fipscounty)
 GROUP BY cbsaname
 ORDER BY comb_pop DESC;
--- Answer: Nashville-Davidson--Murfreesboro--Franklin, TN -> 1830410
 
 -- 5c. What was the most populous county not included in a CBSA?
 SELECT county, population
@@ -112,7 +104,6 @@ FROM fips_county
 	LEFT JOIN cbsa USING (fipscounty)
 WHERE cbsa IS NULL
 ORDER BY population DESC;
--- Answer: SEVIER
 
 -- 6a. Which prescription records had at least 3,000 total claims?
 SELECT drug_name, total_claim_count
@@ -168,7 +159,6 @@ EXCEPT
 SELECT npi
 FROM prescriber
 	INNER JOIN prescription USING (npi);
--- Answer: 4458
 
 -- 2a. What were the five most-prescribed generic drugs among Family Practice prescribers?
 SELECT generic_name, SUM(total_claim_count)
