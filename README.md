@@ -4,6 +4,10 @@ This project uses SQL to analyze Medicare Part D prescribing data alongside drug
 
 The analysis examines prescribing volume, opioid utilization, drug costs, provider specialties, geographic patterns, population distribution, and overdose mortality across Tennessee. Prescribing geography reflects provider locations.
 
+[Analysis notebook](scripts/project_eda.ipynb)
+[SQL queries](scripts/postgres_scripts.sql)
+![Database diagram](ERD.png)
+
 ## Project Objective
 
 Use SQL to investigate healthcare and public-health questions, including:
