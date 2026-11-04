@@ -6,8 +6,6 @@ The analysis examines prescribing volume, opioid utilization, drug costs, provid
 
 [Project Notebook](scripts/project_eda.ipynb)
 
-[SQL queries](scripts/postgres_scripts.sql)
-
 ![Database diagram](ERD.png)
 
 ## Project Objective
@@ -27,7 +25,7 @@ Use SQL to investigate healthcare and public-health questions, including:
 
 ## Technologies Used
 
-- PostgreSQL — original database and SQL analysis
+- PostgreSQL — original database and SQL analysis [SQL queries](scripts/postgres_scripts.sql)
 - DuckDB and Python — database connection and SQL execution in the notebook version
 
 ## Techniques and Methodology Used
