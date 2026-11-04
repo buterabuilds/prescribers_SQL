@@ -4,8 +4,6 @@ This project uses SQL to analyze Medicare Part D prescribing data alongside drug
 
 The analysis examines prescribing volume, opioid utilization, drug costs, provider specialties, geographic patterns, population distribution, and overdose mortality across Tennessee. Prescribing geography reflects provider locations.
 
-[Project Notebook](scripts/project_eda.ipynb)
-
 ![Database diagram](ERD.png)
 
 ## Project Objective
@@ -25,21 +23,21 @@ Use SQL to investigate healthcare and public-health questions, including:
 
 ## Technologies Used
 
-- PostgreSQL — original database and SQL analysis ([SQL queries](scripts/postgres_scripts.sql))
-- DuckDB and Python — database connection and SQL execution in the notebook version
+- PostgreSQL — original database and SQL analysis ([SQL queries](scripts/postgres_scripts.sql#L1))
+- DuckDB and Python — database connection and SQL execution in the notebook version ([Project notebook](scripts/project_eda.ipynb))
 
 ## Techniques and Methodology Used
 
-- Relational joins across prescribing, drug, demographic, and geographic datasets
-- Subqueries for filtering, aggregate comparisons, and percentage denominators
-- Set operations, including `EXCEPT`, to identify specialties and prescribers without matching prescription records
-- Conditional expressions for drug classification and conditional aggregation for opioid-utilization metrics
-- Cross joins and outer joins to construct complete prescriber–drug combinations
-- Null handling with `COALESCE` to supply default values for missing aggregate results
-- Common table expressions (CTEs) and aggregate subqueries to calculate opioid-claim concentration among leading prescribers
-- Multidimensional aggregation with `GROUPING SETS`, `ROLLUP`, and `CUBE`
-- Pivot-table generation using PostgreSQL’s `tablefunc.crosstab` and DuckDB’s native `PIVOT`
-- Top-N analysis across specialties, drugs, providers, and geographic areas
-- Aggregate ratios for cost per day supplied, spending shares, population shares, and overdose deaths relative to population
-- Annual overdose-death summaries and regression-slope calculations with `REGR_SLOPE` to identify downward county-level trends
-- Documentation of temporal and geographic limitations affecting comparisons between prescription spending and overdose deaths
+- Relational joins across prescribing, drug, demographic, and geographic datasets ([example](scripts/postgres_scripts.sql#L464))
+- Subqueries for filtering, aggregate comparisons, and percentage denominators ([example](scripts/postgres_scripts.sql#L272))
+- Set operations, including `EXCEPT`, to identify specialties and prescribers without matching prescription records ([specialties](scripts/postgres_scripts.sql#L82), [prescribers](scripts/postgres_scripts.sql#L90))
+- Conditional expressions for drug classification and conditional aggregation for opioid-utilization metrics ([classification](scripts/postgres_scripts.sql#L145), [aggregation](scripts/postgres_scripts.sql#L70))
+- Cross joins and outer joins to construct complete prescriber–drug combinations ([example](scripts/postgres_scripts.sql#L222))
+- Null handling with `COALESCE` to supply default values for missing aggregate results ([example](scripts/postgres_scripts.sql#L223))
+- Common table expressions (CTEs) and aggregate subqueries to calculate opioid-claim concentration among leading prescribers ([example](scripts/postgres_scripts.sql#L100))
+- Multidimensional aggregation with `GROUPING SETS`, `ROLLUP`, and `CUBE` ([GROUPING SETS](scripts/postgres_scripts.sql#L376), [ROLLUP](scripts/postgres_scripts.sql#L396), [CUBE](scripts/postgres_scripts.sql#L414))
+- Pivot-table generation using PostgreSQL’s `tablefunc.crosstab` and DuckDB’s native `PIVOT` ([crosstab](scripts/postgres_scripts.sql#L425), [notebook](scripts/project_eda.ipynb))
+- Top-N analysis across specialties, drugs, providers, and geographic areas ([example](scripts/postgres_scripts.sql#L16))
+- Aggregate ratios for cost per day supplied, spending shares, population shares, and overdose deaths relative to population ([cost](scripts/postgres_scripts.sql#L247), [spending](scripts/postgres_scripts.sql#L271), [population](scripts/postgres_scripts.sql#L290), [overdose deaths](scripts/postgres_scripts.sql#L460))
+- Annual overdose-death summaries and regression-slope calculations with `REGR_SLOPE` to identify downward county-level trends ([annual summaries](scripts/postgres_scripts.sql#L473), [trend calculation](scripts/postgres_scripts.sql#L486))
+- Documentation of temporal and geographic limitations affecting comparisons between prescription spending and overdose deaths ([project notebook](scripts/project_eda.ipynb))
