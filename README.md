@@ -4,6 +4,10 @@ This project uses SQL to analyze Medicare Part D prescribing data alongside drug
 
 The analysis examines prescribing volume, opioid utilization, drug costs, provider specialties, geographic patterns, population distribution, and overdose mortality across Tennessee. Prescribing geography reflects provider locations.
 
+[Project Notebook](scripts/project_eda.ipynb)
+
+![Database diagram](ERD.png)
+
 ## Project Objective
 
 Use SQL to investigate healthcare and public-health questions, including:
@@ -21,7 +25,7 @@ Use SQL to investigate healthcare and public-health questions, including:
 
 ## Technologies Used
 
-- PostgreSQL — original database and SQL analysis
+- PostgreSQL — original database and SQL analysis ([SQL queries](scripts/postgres_scripts.sql))
 - DuckDB and Python — database connection and SQL execution in the notebook version
 
 ## Techniques and Methodology Used
